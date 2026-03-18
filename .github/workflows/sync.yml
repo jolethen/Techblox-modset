@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          token: ${{ secrets.GITHUB_TOKEN }} # Uses your account's temporary power
           fetch-depth: 0
 
       - name: Register and Add Submodules
@@ -19,20 +20,28 @@ jobs:
           git config --global user.email "bot@github.com"
           git config --global user.name "Mod Bot"
 
-          # 2. Read each line in mods.txt and 'add' it
+          # 2. Fix the "No such device" error by using the token for authentication
+          # This tells git: "If you see github.com, use this token automatically"
+          git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
+
+          # 3. Read each line in mods.txt and 'add' it
           while IFS= read -r url || [ -n "$url" ]; do
             if [ -n "$url" ]; then
+              # Clean the URL (remove invisible spaces/returns from mobile editing)
+              url=$(echo "$url" | tr -d '\r' | xargs)
               folder_name=$(basename "$url" .git)
+              
               echo "Processing $folder_name..."
               
-              # Only add if the folder doesn't exist yet
               if [ ! -d "$folder_name" ]; then
                 git submodule add "$url" "$folder_name"
+              else
+                echo "$folder_name already exists, skipping..."
               fi
             fi
           done < mods.txt
 
-          # 3. Commit the new 'pointers'
+          # 4. Commit and Push
           if [ -n "$(git status --porcelain)" ]; then
             git commit -m "Robot: Bulk added mods from mods.txt"
             git push
