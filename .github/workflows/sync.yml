@@ -1,0 +1,19 @@
+name: Bulk Add Submodules
+on: 
+  workflow_dispatch: # This adds a "Run" button you can press
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Initialize Submodules
+        run: |
+          git submodule update --init --recursive
+          git config --global user.email "bot@github.com"
+          git config --global user.name "Mod Bot"
+          git add .
+          git commit -m "Automated submodule sync" || echo "No changes"
+          git push
