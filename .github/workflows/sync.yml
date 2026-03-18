@@ -1,4 +1,4 @@
-name: Bulk Add Submodules
+name: Bulk Add and Release
 on: 
   workflow_dispatch:
 
@@ -11,40 +11,43 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }} # Uses your account's temporary power
+          token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
       - name: Register and Add Submodules
         run: |
-          # 1. Setup Bot Identity
           git config --global user.email "bot@github.com"
           git config --global user.name "Mod Bot"
-
-          # 2. Fix the "No such device" error by using the token for authentication
-          # This tells git: "If you see github.com, use this token automatically"
           git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
-          # 3. Read each line in mods.txt and 'add' it
           while IFS= read -r url || [ -n "$url" ]; do
             if [ -n "$url" ]; then
-              # Clean the URL (remove invisible spaces/returns from mobile editing)
               url=$(echo "$url" | tr -d '\r' | xargs)
               folder_name=$(basename "$url" .git)
-              
-              echo "Processing $folder_name..."
-              
               if [ ! -d "$folder_name" ]; then
                 git submodule add "$url" "$folder_name"
-              else
-                echo "$folder_name already exists, skipping..."
               fi
             fi
           done < mods.txt
+          
+          # Initialize and pull the actual code into the folders
+          git submodule update --init --recursive
 
-          # 4. Commit and Push
           if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "Robot: Bulk added mods from mods.txt"
+            git commit -m "Robot: Updated submodules"
             git push
-          else
-            echo "Everything is already up to date."
           fi
+
+      - name: Create Full ZIP
+        run: |
+          # Zip everything except the .git folders to keep it clean
+          zip -r full_modset.zip . -x "*.git*" ".github*" "mods.txt"
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: "v${{ github.run_number }}"
+          name: "Full Modset Update #${{ github.run_number }}"
+          files: full_modset.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
