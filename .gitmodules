@@ -5,3 +5,6 @@
 [submodule "mesecons"]
 	path = mesecons
 	url = https://github.com/minetest-mods/mesecons.git
+[submodule "Minetest-WorldEdit"]
+	path = Minetest-WorldEdit
+	url = https://github.com/Uberi/Minetest-WorldEdit.git
