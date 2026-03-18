@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write  # This tells GitHub the bot can save files
+  contents: write
 
 jobs:
   build:
@@ -11,25 +11,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: true # Tells it to look for that .gitmodules map
           fetch-depth: 0
 
-      - name: Sync and Add Submodules
+      - name: Register and Add Submodules
         run: |
-          # 1. Look at .gitmodules and download the mods
-          git submodule update --init --recursive
-          
-          # 2. Identify the bot so it can commit
+          # 1. Setup Bot Identity
           git config --global user.email "bot@github.com"
           git config --global user.name "Mod Bot"
-          
-          # 3. Add all the new "links" (submodules) to the repo
-          git add .
-          
-          # 4. Save and Push
+
+          # 2. Read each line in mods.txt and 'add' it
+          while IFS= read -r url || [ -n "$url" ]; do
+            if [ -n "$url" ]; then
+              folder_name=$(basename "$url" .git)
+              echo "Processing $folder_name..."
+              
+              # Only add if the folder doesn't exist yet
+              if [ ! -d "$folder_name" ]; then
+                git submodule add "$url" "$folder_name"
+              fi
+            fi
+          done < mods.txt
+
+          # 3. Commit the new 'pointers'
           if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "Automated submodule sync"
+            git commit -m "Robot: Bulk added mods from mods.txt"
             git push
           else
-            echo "No changes to commit"
+            echo "Everything is already up to date."
           fi
