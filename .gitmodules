@@ -1,0 +1,7 @@
+[submodule "worldedit"]
+	path = worldedit
+	url = https://github.com/minetest-mods/worldedit.git
+
+[submodule "mesecons"]
+	path = mesecons
+	url = https://github.com/minetest-mods/mesecons.git
