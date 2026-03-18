@@ -1,6 +1,9 @@
 name: Bulk Add Submodules
 on: 
-  workflow_dispatch: # This adds a "Run" button you can press
+  workflow_dispatch:
+
+permissions:
+  contents: write  # This tells GitHub the bot can save files
 
 jobs:
   build:
@@ -8,12 +11,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Initialize Submodules
+          submodules: true # Tells it to look for that .gitmodules map
+          fetch-depth: 0
+
+      - name: Sync and Add Submodules
         run: |
+          # 1. Look at .gitmodules and download the mods
           git submodule update --init --recursive
+          
+          # 2. Identify the bot so it can commit
           git config --global user.email "bot@github.com"
           git config --global user.name "Mod Bot"
+          
+          # 3. Add all the new "links" (submodules) to the repo
           git add .
-          git commit -m "Automated submodule sync" || echo "No changes"
-          git push
+          
+          # 4. Save and Push
+          if [ -n "$(git status --porcelain)" ]; then
+            git commit -m "Automated submodule sync"
+            git push
+          else
+            echo "No changes to commit"
+          fi
