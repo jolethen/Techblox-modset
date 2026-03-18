@@ -16,32 +16,45 @@ jobs:
 
       - name: Register and Add Submodules
         run: |
+          # 1. Setup Bot Identity and Authentication
           git config --global user.email "bot@github.com"
           git config --global user.name "Mod Bot"
           git config --global url."https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
+          # 2. Read each line in mods.txt and 'add' it as a submodule
           while IFS= read -r url || [ -n "$url" ]; do
             if [ -n "$url" ]; then
+              # Clean mobile-formatting issues from the URL
               url=$(echo "$url" | tr -d '\r' | xargs)
               folder_name=$(basename "$url" .git)
+              
               if [ ! -d "$folder_name" ]; then
+                echo "Adding submodule: $folder_name"
                 git submodule add "$url" "$folder_name"
               fi
             fi
           done < mods.txt
           
-          # Initialize and pull the actual code into the folders
+          # 3. Download the actual code into the folders
           git submodule update --init --recursive
 
+          # 4. Save the new submodule pointers to your repo
           if [ -n "$(git status --porcelain)" ]; then
-            git commit -m "Robot: Updated submodules"
+            git add .
+            git commit -m "Robot: Bulk added/updated submodules"
             git push
+          else
+            echo "No changes to commit to repository."
           fi
 
       - name: Create Full ZIP
         run: |
-          # Zip everything except the .git folders to keep it clean
-          zip -r full_modset.zip . -x "*.git*" ".github*" "mods.txt"
+          # 5. THE FIX: Remove internal .git folders so they aren't 'invisible' to the zip command
+          # This only happens on the temporary runner, not your actual GitHub repo
+          find . -name ".git" -exec rm -rf {} +
+          
+          # 6. Create the ZIP file including all mod files
+          zip -r full_modset.zip . -x ".github/*" "mods.txt" ".gitignore"
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
@@ -49,5 +62,13 @@ jobs:
           tag_name: "v${{ github.run_number }}"
           name: "Full Modset Update #${{ github.run_number }}"
           files: full_modset.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup Old Releases
+        uses: dev-drprasad/delete-older-releases@v0.3.3
+        with:
+          keep_latest: 3
+          delete_tags: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
