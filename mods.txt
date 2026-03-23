@@ -1,2 +1,4 @@
 https://github.com/Uberi/Minetest-WorldEdit.git
 https://github.com/minetest-mods/3d_armor.git
+https://github.com/x2048/terraform.git
+https://codeberg.org/HybridDog/we_undo.git
