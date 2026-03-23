@@ -8,3 +8,12 @@
 [submodule "Minetest-WorldEdit"]
 	path = Minetest-WorldEdit
 	url = https://github.com/Uberi/Minetest-WorldEdit.git
+[submodule "3d_armor"]
+	path = 3d_armor
+	url = https://github.com/minetest-mods/3d_armor.git
+[submodule "terraform"]
+	path = terraform
+	url = https://github.com/x2048/terraform.git
+[submodule "we_undo"]
+	path = we_undo
+	url = https://codeberg.org/HybridDog/we_undo.git
