@@ -1,1 +1,2 @@
 https://github.com/Uberi/Minetest-WorldEdit.git
+https://github.com/minetest-mods/3d_armor.git
