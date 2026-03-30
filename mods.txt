@@ -2,3 +2,6 @@ https://github.com/Uberi/Minetest-WorldEdit.git
 https://github.com/minetest-mods/3d_armor.git
 https://github.com/x2048/terraform.git
 https://codeberg.org/HybridDog/we_undo.git
+https://github.com/minetest-mods/unified_inventory.git
+https://github.com/mt-mods/unified_inventory_plus.git
+https://github.com/OgelGames/fakelib.git
