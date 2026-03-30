@@ -17,3 +17,12 @@
 [submodule "we_undo"]
 	path = we_undo
 	url = https://codeberg.org/HybridDog/we_undo.git
+[submodule "unified_inventory"]
+	path = unified_inventory
+	url = https://github.com/minetest-mods/unified_inventory.git
+[submodule "unified_inventory_plus"]
+	path = unified_inventory_plus
+	url = https://github.com/mt-mods/unified_inventory_plus.git
+[submodule "fakelib"]
+	path = fakelib
+	url = https://github.com/OgelGames/fakelib.git
