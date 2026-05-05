@@ -26,3 +26,161 @@
 [submodule "fakelib"]
 	path = fakelib
 	url = https://github.com/OgelGames/fakelib.git
+
+
+
+[submodule "3d_armor"]
+	path = 3d_armor
+	url = https://github.com/minetest-mods/3d_armor.git
+
+[submodule "animalia"]
+	path = animalia
+	url = https://github.com/ElCeejo/animalia.git
+
+[submodule "anvil"]
+	path = anvil
+	url = https://github.com/tenplus1/anvil.git
+
+[submodule "areas"]
+	path = areas
+	url = https://github.com/ShadowNinja/areas.git
+
+[submodule "auroras"]
+	path = auroras
+	url = https://github.com/minetest-mods/auroras.git
+
+[submodule "bakedclay"]
+	path = bakedclay
+	url = https://github.com/tenplus1/bakedclay.git
+
+[submodule "besio_signs"]
+	path = besio_signs
+	url = https://github.com/basi0/besio_signs.git
+
+[submodule "biome_lib"]
+	path = biome_lib
+	url = https://github.com/minetest-mods/biome_lib.git
+
+[submodule "bonemeal"]
+	path = bonemeal
+	url = https://github.com/tenplus1/bonemeal.git
+
+[submodule "bones"]
+	path = bones
+	url = https://github.com/minetest-mods/bones.git
+
+[submodule "cblocks"]
+	path = cblocks
+	url = https://github.com/minetest-mods/cblocks.git
+
+[submodule "church"]
+	path = church
+	url = https://github.com/minetest-mods/church.git
+
+[submodule "climate_api"]
+	path = climate_api
+	url = https://github.com/TestificateMods/climate_api.git
+
+[submodule "creatura"]
+	path = creatura
+	url = https://github.com/ElCeejo/creatura.git
+
+[submodule "currency"]
+	path = currency
+	url = https://github.com/minetest-mods/currency.git
+
+[submodule "dcwebhook"]
+	path = dcwebhook
+	url = https://github.com/E-S-C-A-P-E/dcwebhook.git
+
+[submodule "death_messages"]
+	path = death_messages
+	url = https://github.com/minetest-mods/death_messages.git
+
+[submodule "eco_trade"]
+	path = eco_trade
+	url = https://github.com/AiTechEye/eco_trade.git
+
+[submodule "everness"]
+	path = everness
+	url = https://github.com/Saabbir/everness.git
+
+[submodule "fakelib"]
+	path = fakelib
+	url = https://github.com/appgurueu/fakelib.git
+
+[submodule "farming"]
+	path = farming
+	url = https://github.com/minetest-mods/farming.git
+
+[submodule "futil"]
+	path = futil
+	url = https://github.com/appgurueu/futil.git
+
+[submodule "hopper"]
+	path = hopper
+	url = https://github.com/minetest-mods/hopper.git
+
+[submodule "hudbars"]
+	path = hudbars
+	url = https://github.com/minetest-mods/hudbars.git
+
+[submodule "illumination"]
+	path = illumination
+	url = https://github.com/minetest-mods/illumination.git
+
+[submodule "mesecons"]
+	path = mesecons
+	url = https://github.com/minetest-mods/mesecons.git
+
+[submodule "Minetest-WorldEdit"]
+	path = Minetest-WorldEdit
+	url = https://github.com/Uberi/Minetest-WorldEdit.git
+
+[submodule "modlib"]
+	path = modlib
+	url = https://github.com/appgurueu/modlib.git
+
+[submodule "moreblocks"]
+	path = moreblocks
+	url = https://github.com/minetest-mods/moreblocks.git
+
+[submodule "multidecor"]
+	path = multidecor
+	url = https://github.com/Pavel-S/multidecor.git
+
+[submodule "player_monoids"]
+	path = player_monoids
+	url = https://github.com/minetest-mods/player_monoids.git
+
+[submodule "signs_lib"]
+	path = signs_lib
+	url = https://github.com/minetest-mods/signs_lib.git
+
+[submodule "smartshop"]
+	path = smartshop
+	url = https://github.com/AiTechEye/smartshop.git
+
+[submodule "spawn_command"]
+	path = spawn_command
+	url = https://github.com/tenplus1/spawn_command.git
+
+[submodule "travelnet"]
+	path = travelnet
+	url = https://github.com/Sokomine/travelnet.git
+
+[submodule "unified_inventory"]
+	path = unified_inventory
+	url = https://github.com/minetest-mods/unified_inventory.git
+
+[submodule "wardrobe"]
+	path = wardrobe
+	url = https://github.com/minetest-mods/wardrobe.git
+
+[submodule "whitelist"]
+	path = whitelist
+	url = https://github.com/minetest-mods/whitelist.git
+
+[submodule "xban2"]
+	path = xban2
+	url = https://github.com/minetest-mods/xban2.git
