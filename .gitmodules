@@ -27,4 +27,22 @@
 	path = fakelib
 	url = https://github.com/OgelGames/fakelib.git
 
+[submodule "creatura"]
+	path = creatura
+	url = https://github.com/ElCeejo/creatura.git
 
+[submodule "animalia"]
+	path = animalia
+	url = https://github.com/ElCeejo/animalia.git
+
+[submodule "auroras"]
+	path = auroras
+	url = https://github.com/minetest-mods/auroras.git
+
+[submodule "biome_lib"]
+	path = biome_lib
+	url = https://github.com/minetest-mods/biome_lib.git
+
+[submodule "everness"]
+	path = everness
+	url = https://github.com/Saabbir/everness.git
