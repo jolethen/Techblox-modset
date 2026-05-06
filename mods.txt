@@ -5,3 +5,12 @@ https://codeberg.org/HybridDog/we_undo.git
 https://github.com/minetest-mods/unified_inventory.git
 https://github.com/mt-mods/unified_inventory_plus.git
 https://github.com/OgelGames/fakelib.git
+https://github.com/ElCeejo/creatura.git
+
+https://github.com/ElCeejo/animalia.git
+
+https://github.com/minetest-mods/auroras.git
+
+https://github.com/minetest-mods/biome_lib.git
+
+https://github.com/Saabbir/everness.git
